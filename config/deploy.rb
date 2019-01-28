@@ -9,7 +9,7 @@ set :rvm_ruby_version, -> { "2.5.3@#{fetch(:application)} --create" }
 set :assets_roles, [:app, :web]
 
 set :deploy_to, "/home/deploy/var/www/#{fetch(:application)}"
-set :passenger_restart_with_touch, true
+set :passenger_in_gemfile, true
 
 # Default value for :linked_files is []
 append :linked_files, 'config/database.yml', 'config/secrets.yml', '.ruby-gemset', '.ruby-version'
