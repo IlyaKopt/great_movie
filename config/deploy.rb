@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.0'
 
-set :application, 'grate_movie'
+set :application, 'great_movie'
 set :repo_url, 'git@github.com:IlyaKopt/great_movie.git'
 
 set :rvm_type, :system
