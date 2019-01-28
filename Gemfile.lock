@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/capistrano/passenger.git
   revision: 6dc408ec690d0cbe8c2e9d86c33ad4f7977dfa73
+  branch: master
   specs:
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
@@ -53,7 +54,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
-    capistrano (3.11.0)
+    capistrano (3.10.2)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -204,7 +205,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano (~> 3.6)
+  capistrano (= 3.10.2)
   capistrano-bundler
   capistrano-passenger!
   capistrano-rails (~> 1.3)

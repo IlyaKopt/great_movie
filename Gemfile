@@ -28,11 +28,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano', '~> 3.6'
+  gem 'capistrano', '3.10.2'
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'capistrano-passenger', require: false, github: 'capistrano/passenger'
+  gem 'capistrano-passenger', require: false, git: 'https://github.com/capistrano/passenger.git', branch: 'master'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

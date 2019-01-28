@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock '~> 3.11.0'
+lock '3.10.2'
 
 set :application, 'great_movie'
 set :repo_url, 'git@github.com:IlyaKopt/great_movie.git'
@@ -9,6 +9,7 @@ set :rvm_ruby_version, -> { "2.5.3@#{fetch(:application)} --create" }
 set :assets_roles, [:app, :web]
 
 set :deploy_to, "/home/deploy/var/www/#{fetch(:application)}"
+set :passenger_restart_with_touch, true
 
 # Default value for :linked_files is []
 append :linked_files, 'config/database.yml', 'config/secrets.yml', '.ruby-gemset', '.ruby-version'
