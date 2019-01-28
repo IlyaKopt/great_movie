@@ -4,7 +4,7 @@ lock '~> 3.11.0'
 set :application, 'grate_movie'
 set :repo_url, 'git@github.com:IlyaKopt/great_movie.git'
 
-set :rvm_type, :user
+set :rvm_type, :system
 set :rvm_ruby_version, -> { "2.5.3@#{fetch(:application)} --create" }
 set :assets_roles, [:app, :web]
 

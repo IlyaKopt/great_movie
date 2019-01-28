@@ -2,17 +2,17 @@ login: &login
   adapter: postgresql
   encoding: utf8
   host: localhost
-  username: victor
-  password: pg_va6
+  username: username
+  password: userpassword
 
 development:
   <<: *login
-  database: media_dev
+  database: youappdatabasename_development
 
 test:
   <<: *login
-  database: media_test
+  database: youappdatabasename_test
 
 production:
   <<: *login
-  database: media_prod
+  database: youappdatabasename_production
