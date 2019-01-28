@@ -26,7 +26,7 @@ namespace :deploy do
   task :any_task do
     on 'deploy@138.68.84.233' do
       within "#{fetch(:deploy_to)}/current" do
-        execute :bundle, :exec, 'rake db:create RAILS_ENV=production'
+        execute :bundle, :exec, 'rake db:seed RAILS_ENV=production'
       end
     end
   end

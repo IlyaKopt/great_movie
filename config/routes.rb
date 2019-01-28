@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :movies
   devise_for :admins
-  resources :users
   root 'dashboards#index'
+
+  resources :users
 end
