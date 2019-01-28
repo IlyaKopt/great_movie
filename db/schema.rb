@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(version: 20190128143137) do
     t.integer "favorited"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "thumbnail_file_name"
+    t.string "thumbnail_content_type"
+    t.integer "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "thumbnail_file_name"
-    t.string "thumbnail_content_type"
-    t.integer "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
   end
 
 end

@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   has_attached_file :thumbnail
-  validates_attachment_content_type :thumbnail, content_type: /\Aimage/
+  validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :thumbnail, matches: [/png\z/, /jpe?g\z/]
   validates_attachment_size :thumbnail, in: 0..1.megabytes
 

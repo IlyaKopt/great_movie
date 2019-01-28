@@ -10,11 +10,15 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :thumbnail
+    = f.file_field :thumbnail
+
+  .field
     = f.label :genres
-    = f.text_field :genres
+    = f.select(:genres, Movie::GENRES, {}, {include_blank: false, multiple: true, size:10 })
   .field
     = f.label :year
-    = f.text_field :year
+    = f.select :year, 1900..Date.today.year
   .field
     = f.label :director
     = f.text_field :director
