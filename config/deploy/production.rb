@@ -8,7 +8,7 @@ server '138.68.84.233',
        roles: %w{app db web},
        ssh_options: {
            user: 'deploy',
-           forward_agent: true#,
-           # auth_methods: %w(publickey)
+           forward_agent: true,
+           auth_methods: %w(publickey)
        }
 
