@@ -2,8 +2,13 @@ class Api::MoviesController < ActionController::API
   include Response
 
   def index
-    movies = prepare_movies_json(Movie.all)
-    json_response(movies)
+    if movie_params[:username].present?
+      user = User.find_by(movie_params)
+      movies = prepare_movies_json(Movie.preload(:likes), user)
+      json_response(movies)
+    else
+      render json: { status: 401 }
+    end
   end
 
   def show
@@ -19,7 +24,7 @@ class Api::MoviesController < ActionController::API
   def favorites
     if movie_params[:username].present?
       user = User.find_by(movie_params)
-      movies = prepare_movies_json(user.movies)
+      movies = prepare_movies_json(user.movies, user)
       render json: movies, status: 200
     else
       render json: { status: 401 }
@@ -36,9 +41,13 @@ class Api::MoviesController < ActionController::API
       params.require(:movie).permit(:username)
     end
 
-    def prepare_movies_json(movies)
+    def prepare_movies_json(movies, user)
       movies.map do |movie|
-        { id: movie.id, name: movie.name, thumbnail: "#{request.base_url}#{movie.thumbnail.url}" }
+
+        { id: movie.id,
+          name: movie.name,
+          thumbnail: "#{request.base_url}#{movie.thumbnail.url}",
+          favorite_status: set_status(movie, user) }
       end
     end
 
@@ -54,4 +63,8 @@ class Api::MoviesController < ActionController::API
         thumbnail: "#{request.base_url}#{movie.thumbnail.url}"
       }
     end
+
+  def set_status(movie, user)
+    movie.likes.select{ |u| u.user_id == user.id }.present?
+  end
 end
