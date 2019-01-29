@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
-  has_attached_file :thumbnail
+  has_attached_file :thumbnail, path: ':rails_root/public/system/:attachment/:id/:style/:filename',
+                                url: '/system/:attachment/:id/:style/:filename'
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :thumbnail, matches: [/png\z/, /jpe?g\z/]
   validates_attachment_size :thumbnail, in: 0..1.megabytes
