@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     resource :movies, only: %i[], default: :json do
       get '/', to: 'movies#index'
+      get '/details', to: 'movies#show'
       get '/favorites', to: 'movies#favorites'
     end
 
