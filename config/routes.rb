@@ -18,5 +18,10 @@ Rails.application.routes.draw do
       get '/', to: 'movies#index'
       get '/favorites', to: 'movies#favorites'
     end
+
+    resource :likes, only: %i[], default: :json do
+      post '/favorite', to: 'likes#create'
+      delete '/unfavorite', to: 'likes#destroy'
+    end
   end
 end
