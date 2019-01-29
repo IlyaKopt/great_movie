@@ -1,0 +1,25 @@
+%h1 Listing movies
+.container
+  .row
+    .col-lg-12
+      %p.text-right
+        = link_to 'Add Movie', new_movie_path, class: 'btn btn-success'
+.container
+  .row
+    .col-lg-12
+      %table.table.table-hover.table-bordered.table-striped
+        %thead
+          %tr.table_head_color
+            %th Name
+            %th Year
+            %th Favorite numbers
+            %th Action
+
+        %tbody
+          - @movies.each do |movie|
+            %tr
+              %td= movie.name
+              %td= movie.year
+              %td= movie.favorited
+              %td= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }
+
