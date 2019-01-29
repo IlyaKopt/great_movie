@@ -68,7 +68,7 @@
             %pre.multiline
               = "[\n{\n'id':33,\n'name':'movie_name 5',\n'thumbnail':'http://138.68.84.233/system/thumbnails/33/original/ford.png?1548756012',\n'favorite_status':true\n},\n ...\n]"
           %p
-            %strong Error returns:
+            %strong ERROR. Returns:
             { error: 'Please create needed user' } and 401 status
 
   .row
@@ -102,6 +102,78 @@
             %strong ERRROR. Returns:
             { error: 'Please create needed user' } and 401 status
 
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 getFavoriteMovies
+        .panel-body
+          %p
+            %strong method
+            GET
+          %p
+            %strong URL
+            http://138.68.84.233/api/movies/getFavoriteMovies
+          %p
+            %strong Needed params
+            { "movie": { "username": "some_user_name" } }
+          %p
+            %strong Returns
+            %pre.multiline
+              = "[\n{\n'id':33,\n'name':'movie_name 5',\n'thumbnail':'http://138.68.84.233/system/thumbnails/33/original/ford.png?1548756012',\n'favorite_status':true\n},\n ...\n]"
+          %p
+            %strong ERRROR. Returns:
+            { error: 'Please create needed user' } and 401 status
 
 
-    get '/getFavoriteMovies',
+
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 setFavorite
+        .panel-body
+          %p
+            %strong method
+            POST
+          %p
+            %strong URL
+            http://138.68.84.233/api/likes/setFavorite
+          %p
+            %strong Needed params
+            { "like": { "username": "some_user_name", "movie_id": 'some_movie_id' } }
+          %p
+            %strong Returns
+            %pre.multiline
+              = "{'id':104,'movie_id':29,'user_id':121,'created_at':'date','updated_at':'date'}"
+          %p
+            %strong ERRROR. Returns:
+            {"movie_id":["has already been taken"]} and 422 status
+            %br
+              OR just 401
+
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 setUnfavorite
+        .panel-body
+          %p
+            %strong method
+            DELETE
+          %p
+            %strong URL
+            http://138.68.84.233/api/likes/setUnfavorite
+          %p
+            %strong Needed params
+            { "like": { "username": "some_user_name", "movie_id": 'some_movie_id' } }
+          %p
+            %strong Returns
+            %pre.multiline
+              = "{\n'status':200}\n"
+          %p
+            %strong ERRROR. Returns:
+            401 status
