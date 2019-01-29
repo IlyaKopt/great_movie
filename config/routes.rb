@@ -10,19 +10,19 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     resource :users, only: %i[], default: :json do
-      get '/', to: 'users#show'
-      post '/', to: 'users#create'
+      get '/getUser', to: 'users#show'
+      post '/setUser', to: 'users#create'
     end
 
     resource :movies, only: %i[], default: :json do
-      get '/', to: 'movies#index'
-      get '/details', to: 'movies#show'
-      get '/favorites', to: 'movies#favorites'
+      get '/getMovies', to: 'movies#index'
+      get '/getMovieDetails', to: 'movies#show'
+      get '/getFavoriteMovies', to: 'movies#favorites'
     end
 
     resource :likes, only: %i[], default: :json do
-      post '/favorite', to: 'likes#create'
-      delete '/unfavorite', to: 'likes#destroy'
+      post '/setFavorite', to: 'likes#create'
+      delete '/setUnfavorite', to: 'likes#destroy'
     end
   end
 end
