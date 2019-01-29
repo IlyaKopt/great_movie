@@ -1,0 +1,107 @@
+%h1 Api docs
+
+.container
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 getUser
+        .panel-body
+          %p
+            %strong method
+            GET
+          %p
+            %strong URL
+            http://138.68.84.233/api/users/getUser
+          %p
+            %strong Needed params
+            { "user": { "username": "some_name" } }
+          %p
+            %strong Returns
+            { "username": "some_name" }
+          %p
+            %strong ERRROR. If params empty or user is not founded it's returns:
+            {"error":"Please create needed user"} and 401 status
+
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 setUser
+        .panel-body
+          %p
+            %strong method
+            POST
+          %p
+            %strong URL
+            http://138.68.84.233/api/users/setUser
+          %p
+            %strong Needed params
+            { "user": { "username": "some_name" } }
+          %p
+            %strong Returns
+            { "username": "some_name" }
+          %p
+            %strong ERRROR. If an user is added before it's returns:
+            {"username":["has already been taken"]} and 422 status
+
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 getMovies
+        .panel-body
+          %p
+            %strong method
+            GET
+          %p
+            %strong URL
+            http://138.68.84.233/api/movies/getMovies
+          %p
+            %strong Needed params
+            { "movie": { "username": "some_name" } }
+          %p
+            %strong Returns
+            %pre.multiline
+              = "[\n{\n'id':33,\n'name':'movie_name 5',\n'thumbnail':'http://138.68.84.233/system/thumbnails/33/original/ford.png?1548756012',\n'favorite_status':true\n},\n ...\n]"
+          %p
+            %strong Error returns:
+            { error: 'Please create needed user' } and 401 status
+
+  .row
+    .col-xs-12
+      .panel{ style: 'background-color: #D3D3D3' }
+        .panel-heading
+          .panel-title
+            %h3 getMovieDetails
+        .panel-body
+          %p
+            %strong method
+            GET
+          %p
+            %strong URL
+            http://138.68.84.233/api/movies/getMovieDetails
+          %p
+            %strong Needed params
+            { "movie": { "id": "movieId" } }
+          %p
+            %strong Returns
+            %pre.multiline
+              = "{ \n'name':'The Third Man',
+                   \n'genres':['','Mystery','Thriller'],
+                   \n'year':'1900',
+                   \n'director':'Carol Reed',
+                   \n'main_star':'Joseph Cotten',
+                   \n'description':'Pulp novelist Holly Martins travels to shadowy, postwar Vienna, only to find himself investigating the mysterious death of an old friend, Harry Lime.',
+                   \n'favorited':0,
+                   \n'thumbnail':'http://138.68.84.233/system/thumbnails/25/original/the_third_man.jpg?1548765676'\n }"
+          %p
+            %strong ERRROR. Returns:
+            { error: 'Please create needed user' } and 401 status
+
+
+
+    get '/getFavoriteMovies',

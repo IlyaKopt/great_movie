@@ -4,10 +4,14 @@ class Api::MoviesController < ActionController::API
   def index
     if movie_params[:username].present?
       user = User.find_by(movie_params)
-      movies = prepare_movies_json(Movie.preload(:likes), user)
-      json_response(movies)
+      if user.present?
+        movies = prepare_movies_json(Movie.preload(:likes), user)
+        json_response(movies)
+      else
+        render json: { error: 'Please create needed user' }, status: 401
+      end
     else
-      render json: { status: 401 }
+      render json: { error: 'Please create needed user' }, status: 401
     end
   end
 

@@ -4,9 +4,13 @@ class Api::UsersController < ActionController::API
   def show
     if user_params[:username].present?
       user = User.find_by(user_params)
-      json_response(username: user.username)
+      if user.present?
+        json_response(username: user.username)
+      else
+        render json: { error: 'Please create needed user' }, status: 401
+      end
     else
-      render json: {}, status: 401
+      render json: { error: 'Please create needed user' }, status: 401
     end
   end
 
