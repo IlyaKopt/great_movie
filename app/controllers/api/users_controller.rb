@@ -2,20 +2,20 @@ class Api::UsersController < ActionController::API
   include Response
   
   def show
-    if params[:username].present?
-      @user = User.find_by_username(params[:username])
-      json_response(@user)
+    if user_params[:username].present?
+      user = User.find_by(user_params)
+      json_response(username: user.username)
     else
       render json: {}, status: 401
     end
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      json_response(@user)
+    user = User.new(user_params)
+    if user.save
+      json_response(username: user.username)
     else
-      render json: @user.errors, status: 422
+      render json: user.errors, status: 422
     end
   end
 
