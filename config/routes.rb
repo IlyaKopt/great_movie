@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
 
-  root 'admin/dashboards#index'
+  get '/admin', to: 'admin/dashboards#index', as: 'root'
 
   scope module: :admin, path: 'admin' do
     resources :users, only: %i[index show destroy]
