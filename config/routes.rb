@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     resource :users, only: %i[], default: :json do
       get '/', to: 'users#show'
       post '/', to: 'users#create'
-      # get '/:username', to: 'users#show'
-      # post '/:username', to: 'users#create'
+    end
+
+    resource :movies, only: %i[], default: :json do
+      get '/', to: 'movies#index'
+      get '/favorites', to: 'movies#favorites'
     end
   end
 end
