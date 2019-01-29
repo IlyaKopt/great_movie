@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
+  has_many :likes, dependent: :destroy
+
   has_attached_file :thumbnail, path: ':rails_root/public/system/:attachment/:id/:style/:filename',
                                 url: '/system/:attachment/:id/:style/:filename'
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\Z/
@@ -11,10 +13,10 @@ class Movie < ApplicationRecord
   validates :name, :genres, :year, presence: true
 
   validates :year, format: { with: /\A\d{4}\z/, message: 'Integer only. No sign allowed.' }
-  validates :name, length: { minimum: 0, maximum: 80 }
-  validates :director, length: { minimum: 0, maximum: 60 }
-  validates :main_star, length: { minimum: 0, maximum: 60 }
-  validates :description, length: { minimum: 0, maximum: 400 }
+  validates :name, length: { maximum: 80 }
+  validates :director, length: { maximum: 60 }
+  validates :main_star, length: { maximum: 60 }
+  validates :description, length: { maximum: 400 }
 
   serialize :genres, Array
 end

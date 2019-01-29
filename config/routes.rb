@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'admin/dashboards#index'
 
   scope module: :admin, path: 'admin' do
-    resources :users, only: %i[index destroy]
+    resources :users, only: %i[index show destroy]
     resources :movies, except: [:show]
   end
 end

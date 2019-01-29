@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-lg-offset-3.col-lg-6
+      %h2= @user.username
+  - if @movies
+    .row
+      .col-lg-12
+        %table.table.table-hover.table-bordered.table-striped
+          %thead
+            %tr
+              %th Name
+          %tbody
+            - @movies.each do |movie|
+              %tr
+                %td= link_to movie.name, edit_movie_path(movie)
+
+        %hr
+        = link_to 'Back', users_path, class: 'btn btn-default'

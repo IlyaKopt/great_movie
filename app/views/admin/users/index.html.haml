@@ -8,9 +8,9 @@
             %th Username
             %th Favorited movies
             %th Action
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.username
-        %td= 0
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= link_to user.username, user
+              %td= user.favorited
+              %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
