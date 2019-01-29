@@ -1,35 +1,64 @@
-= form_for @movie do |f|
-  - if @movie.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@movie.errors.count, "error")} prohibited this movie from being saved:"
-      %ul
-        - @movie.errors.full_messages.each do |message|
-          %li= message
+.container
+  .row
+    .col-lg-10.col-lg-offset-1{ style: 'border-bottom: 1px solid #FFF;' }
+      = form_for @movie do |f|
+        - if @movie.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@movie.errors.count, "error")} prohibited this movie from being saved:"
+            %ul
+              - @movie.errors.full_messages.each do |message|
+                %li= message
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :name
+            .col-sm-6
+              = f.text_field :name, class: 'form-control'
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :thumbnail
-    = f.file_field :thumbnail
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :genres
+            .col-sm-6
+              = f.select(:genres, Movie::GENRES, {}, {include_blank: false, multiple: true, size:10, class: 'form-control' })
 
-  .field
-    = f.label :genres
-    = f.select(:genres, Movie::GENRES, {}, {include_blank: false, multiple: true, size:10 })
-  .field
-    = f.label :year
-    = f.select :year, 1900..Date.today.year
-  .field
-    = f.label :director
-    = f.text_field :director
-  .field
-    = f.label :main_star
-    = f.text_field :main_star
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :favorited
-    = f.number_field :favorited
-  .actions
-    = f.submit 'Save'
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :year
+            .col-sm-6
+              = f.select :year, 1900..Date.today.year, {}, { class: 'form-control' }
+
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :thumbnail
+            .col-sm-6
+              = f.file_field :thumbnail, class: 'form-control'
+
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :director
+            .col-sm-6
+              = f.text_field :director, class: 'form-control'
+
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :main_star
+            .col-sm-6
+              = f.text_field :main_star, class: 'form-control'
+
+        .form-group
+          .row
+            .col-sm-4.control-label
+              = f.label :description, 'Описание:'
+            .col-sm-6
+              = f.text_area :description, rows: 5, class: 'form-control'
+        .form-group
+          %hr
+          .col-sm-12
+            = f.submit 'Create Movie', class: 'btn btn-success'
+            = link_to 'Back', :back, class: 'btn btn-default'
+
