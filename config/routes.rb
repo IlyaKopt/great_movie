@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   devise_for :admins
 
   get '/admin', to: 'admin/dashboards#index', as: 'root'
+  root 'admin/dashboards#index'
 
   scope module: :admin, path: 'admin' do
     resources :users, only: %i[index show destroy]
     resources :movies, except: [:show]
+    get '/', as: 'dashboard', to: 'dashboards#index'
   end
 
   namespace 'api' do
