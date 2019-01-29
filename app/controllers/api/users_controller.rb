@@ -1,61 +1,44 @@
 class Api::UsersController < ActionController::API
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
   include Response
-
-  def index
-    @users = User.all
-    json_response(@users)
-  end
   
   def show
-    json_response(@user)
-  end
-
-  def new
-    @user = User.new
-  end
-
-  # GET /api/users/1/edit
-  def edit
+    if params[:username].present?
+      @user = User.find_by_username(params[:username])
+      json_response(@user)
+    else
+      render json: {}, status: 401
+    end
   end
 
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      json_response(@user)
+    else
+      render json: @user.errors, status: 422
     end
   end
 
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @user.update(user_params)
+  #       format.json { render :show, status: :ok, location: @user }
+  #     else
+  #       format.json { render json: @user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+  #
+  # def destroy
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:api_user, {})
+      params.require(:user).permit(:username)
     end
 end

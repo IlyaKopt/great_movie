@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   end
 
   namespace 'api' do
-    resources :users, only: %i[show new create], default: :json
+    resource :users, only: %i[], default: :json do
+      get '/', to: 'users#show'
+      post '/', to: 'users#create'
+      # get '/:username', to: 'users#show'
+      # post '/:username', to: 'users#create'
+    end
   end
 end

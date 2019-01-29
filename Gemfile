@@ -23,7 +23,8 @@ gem 'paperclip', '~> 6.0.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'faker'
   gem 'selenium-webdriver'
 end
 
@@ -38,6 +39,12 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger', require: false, git: 'https://github.com/capistrano/passenger.git', branch: 'master'
+end
+
+group :test do
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
