@@ -16,10 +16,10 @@
             http://138.68.84.233/api/users/getUser
           %p
             %strong Needed params
-            { "user": { "username": "some_name" } }
+            'user[username]=some_user_name'
           %p
             %strong Returns
-            { "username": "some_name" }
+            { "username": "some_user_name" }
           %p
             %strong ERRROR. If params empty or user is not founded it's returns:
             {"error":"Please create needed user"} and 401 status
@@ -39,10 +39,10 @@
             http://138.68.84.233/api/users/setUser
           %p
             %strong Needed params
-            { "user": { "username": "some_name" } }
+            'user[username]=some_user_name'
           %p
             %strong Returns
-            { "username": "some_name" }
+            { "username": "some_user_name" }
           %p
             %strong ERRROR. If an user is added before it's returns:
             {"username":["has already been taken"]} and 422 status
@@ -62,7 +62,7 @@
             http://138.68.84.233/api/movies/getMovies
           %p
             %strong Needed params
-            { "movie": { "username": "some_name" } }
+            'movie[username]=some_user_name'
           %p
             %strong Returns
             %pre.multiline
@@ -86,7 +86,7 @@
             http://138.68.84.233/api/movies/getMovieDetails
           %p
             %strong Needed params
-            { "movie": { "id": "movieId" } }
+            'movie[id]=movieId'
           %p
             %strong Returns
             %pre.multiline
@@ -117,7 +117,7 @@
             http://138.68.84.233/api/movies/getFavoriteMovies
           %p
             %strong Needed params
-            { "movie": { "username": "some_user_name" } }
+            'movie[username]=some_user_name'
           %p
             %strong Returns
             %pre.multiline
@@ -143,7 +143,7 @@
             http://138.68.84.233/api/likes/setFavorite
           %p
             %strong Needed params
-            { "like": { "username": "some_user_name", "movie_id": 'some_movie_id' } }
+            'like[username]=some_user_name&like[movie_id]=some_movie_id'
           %p
             %strong Returns
             %pre.multiline
@@ -169,7 +169,7 @@
             http://138.68.84.233/api/likes/setUnfavorite
           %p
             %strong Needed params
-            { "like": { "username": "some_user_name", "movie_id": 'some_movie_id' } }
+            'like[username]=some_user_name&like[movie_id]=some_movie_id'
           %p
             %strong Returns
             %pre.multiline
